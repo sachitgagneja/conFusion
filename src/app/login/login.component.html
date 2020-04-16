@@ -4,16 +4,18 @@
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
-<form novalidate (ngSubmit)='onSubmit()' appearence = "outline">
+<form novalidate (ngSubmit)='onSubmit()' #loginForm = "ngForm" appearence = "outline">
   <mat-dialog-content>
     <p>
       <mat-form-field>
         <input matInput type="text" placeholder="Username" name="userename"
-        [(ngModel)] = "user.username">
+        [(ngModel)] = "user.username" #username = "ngModel" required>
+        <mat-error *ngIf="username.errors?.required">Username cannot be blank</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="password" placeholder="Password" name="password"
-        [(ngModel)] = "user.password">
+        [(ngModel)] = "user.password" #password = "ngModel" required>
+        <mat-error *ngIf="password.errors?.required">Password cannot be blank</mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -22,6 +24,6 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button type="submit" class="background-primary text-floral-white">Login</button>
+    <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="loginForm.form.invalid">Login</button>
   </mat-dialog-actions>
 </form>
