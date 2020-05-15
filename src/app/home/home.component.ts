@@ -5,6 +5,7 @@ import { DishService } from "../services/dish.service";
 import { PromotionService } from "../services/promotion.service";
 import { Leader } from '../shared/leader';
 import { LeaderService } from '../services/leader.service';
+import { baseURL } from "../shared/baseurl";
 
 @Component({
   selector: 'app-home',

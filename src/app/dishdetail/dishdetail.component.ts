@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from "../services/dish.service";
 import { Location } from "@angular/common";
 import { ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { baseURL } from "../shared/baseurl";
 
 @Component({
   selector: 'app-dishdetail',
@@ -16,7 +17,8 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
 
-  constructor(private dishService: DishService, private location: Location, private route: ActivatedRoute){ }
+  constructor(private dishService: DishService, private location: Location, private route: ActivatedRoute,
+    @Inject('baseURL') private baseURL){ }
 
   ngOnInit() {
     this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
