@@ -18,7 +18,7 @@ export class DishdetailComponent implements OnInit {
   next: string;
 
   constructor(private dishService: DishService, private location: Location, private route: ActivatedRoute,
-    @Inject('baseURL') private baseURL){ }
+    @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
